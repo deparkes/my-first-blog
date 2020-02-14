@@ -1,0 +1,13 @@
+<html>
+<body>
+    {% if available_polls %}
+        <ul>
+        {% for poll in available_polls %}
+            <li><a href="/polls/{{ poll.id }}/">{{ poll.title }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No polls are available.</p>
+    {% endif %}
+</body>
+</html>

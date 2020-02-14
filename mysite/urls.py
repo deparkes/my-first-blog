@@ -25,6 +25,7 @@ router.register(r'posts', api_views.PostViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
+    path('polls/', include('polls.urls')),
     path('api/', include(router.urls)),
     path('api/api-auth', include('rest_framework.urls', namespace='rest_framework')),
     path('accounts/login/', views.LoginView.as_view(), name='login'),
