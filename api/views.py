@@ -2,7 +2,7 @@ from blog.models import Post
 from polls.models import Poll
 from rest_framework import viewsets
 from api.serializers import PostSerializer, PollSerializer
-
+from django.db.models import Sum
 
 class PostViewSet(viewsets.ModelViewSet):
     """
@@ -17,3 +17,6 @@ class PollViewSet(viewsets.ModelViewSet):
     """
     queryset = Poll.objects.all()
     serializer_class = PollSerializer
+
+    def get_queryset(self):
+        return Poll.objects.annotate(score=Sum('vote__value'))
