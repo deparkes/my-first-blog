@@ -21,6 +21,7 @@ from django.contrib.auth import views
 
 router = routers.DefaultRouter()
 router.register(r'posts', api_views.PostViewSet)
+router.register(r'polls', api_views.PollViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
