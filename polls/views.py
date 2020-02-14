@@ -15,8 +15,8 @@ def detail(request, poll_id):
     return render(request, 'polls/detail.html', {'poll': poll})
 
 def results(request, poll_id):
-    score = Vote.objects.filter(poll=poll_id).aggregate(Sum('value'))
-    return HttpResponse("Current score: " + str(score))
+    aggregate = Poll.objects.aggregate(score=Sum('vote__value'))
+    return HttpResponse("Current score: " + str(aggregate['score']))
 
 def vote(request, poll_id, vote_choice):
     poll = get_object_or_404(Poll, pk=poll_id)
