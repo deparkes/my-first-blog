@@ -1,5 +1,5 @@
 from blog.models import Post
-from polls.models import Poll
+from polls.models import Poll, Vote
 from django.db.models import Sum
 from rest_framework import serializers
 
@@ -14,3 +14,8 @@ class PollSerializer(serializers.ModelSerializer):
     class Meta:
         model = Poll
         fields = ('title' ,'owner', 'score')
+
+class VoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Vote
+        fields = ['voter', 'poll', 'value', 'vote_datetime']

@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.utils import timezone
 
 class Poll(models.Model):
     title = models.CharField(max_length=30)
@@ -11,7 +12,7 @@ class Poll(models.Model):
 class Vote(models.Model):
     voter = models.CharField(max_length=30)
     poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
-    vote_datetime = models.DateTimeField('time voted')
+    vote_datetime = models.DateTimeField('time voted', default=timezone.now)
     CHOICES = [(-1, "Down"), (1, "Up")]
     value = models.IntegerField(choices=CHOICES)
 
